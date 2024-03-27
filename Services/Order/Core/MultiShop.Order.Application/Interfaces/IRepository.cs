@@ -6,9 +6,9 @@ namespace MultiShop.Order.Application.Interfaces
     {
         Task<List<T>> GetAll();
         Task<T> GetById(int id);
-        Task<T> Create(T entity);
-        Task<T> Update(T entity);
-        Task<T> Delete(T entity);
+        Task Create(T entity);
+        Task Update(T entity);
+        Task Delete(T entity);
         Task<T> GetByFilter(Expression<Func<T, bool>> filter);
     }
 }
