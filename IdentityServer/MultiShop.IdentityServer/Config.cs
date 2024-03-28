@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System.Collections.Generic;
 
 namespace MultiShop.IdentityServer
@@ -36,6 +37,45 @@ namespace MultiShop.IdentityServer
             new ApiScope("CatalogReadPermission", "Reading authority for catalog operations"),
             new ApiScope("DiscountFullPermission", "Full authority for discount operations"),
             new ApiScope("OrderFullPermission", "Full authority for order operations"),
+        };
+
+        public static IEnumerable<Client> Clients = new Client[]
+        {
+            // Visitor
+            new Client
+            {
+                ClientId = "MultiShopVisitorId",
+                ClientName = "Multi Shop Visitor User",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets = {new Secret("multishopsecret".Sha256())},
+                AllowedScopes = { "CatalogReadPermission" }
+            },
+
+            // Manager
+            new Client
+            {
+                ClientId = "MultiShopManagerId",
+                ClientName = "Multi Shop Manager User",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets = {new Secret("multishopsecret".Sha256())},
+                AllowedScopes = { "CatalogFullPermission" }
+            },
+
+            //Admin
+            new Client
+            {
+                ClientId = "MultiShopAdminId",
+                ClientName = "Multi Shop Admin User",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets = {new Secret("multishopsecret".Sha256())},
+                AllowedScopes = { "CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission",
+                    IdentityServerConstants.LocalApi.ScopeName,
+                    IdentityServerConstants.StandardScopes.Email,
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                },
+                AccessTokenLifetime = 600
+            },
         };
 
     }
