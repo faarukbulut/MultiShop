@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ResultCategoryDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -13,7 +13,6 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Kategori Adı</th>
                                 <th>Kategoriye Ait Ürünler</th>
                                 <th>Sil</th>
@@ -21,19 +20,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>A</td>
-                                <td>A</td>
-                                <td>A</td>
-                            </tr>
+                            @foreach(var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CategoryName</td>
+                                    <td><a href="#" class="btn btn-warning">Kategoriye Ait Ürünler</a></td>
+                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-success">Güncelle</a></td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
+                    <a href="/Admin/Category/CreateCategory" class="btn btn-success">Yeni Ekle</a>
                 </div>
             </div>
         </div>
-        
-        
-        
     </div>
 </section>
