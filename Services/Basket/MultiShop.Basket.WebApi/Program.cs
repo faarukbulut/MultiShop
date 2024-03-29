@@ -3,8 +3,11 @@ using Microsoft.Extensions.Options;
 using MultiShop.Basket.WebApi.LoginServices;
 using MultiShop.Basket.WebApi.Services;
 using MultiShop.Basket.WebApi.Settings;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
+
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
