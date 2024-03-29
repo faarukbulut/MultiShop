@@ -1,4 +1,4 @@
-﻿@model List<ResultCategoryDto>
+﻿@model List<ResultProductDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -8,29 +8,31 @@
     <div class="row">
         <div class="col-md-12">
             <div class="chart-box">
-                <h4>Kategoriler</h4>
+                <h4>Ürünler</h4>
                 <br />
                 <div class="bs-example" data-example-id="bordered-table">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Kategori Adı</th>
+                                <th>Ürün Adı</th>
+                                <th>Ürün Fiyatı</th>
                                 <th>Sil</th>
                                 <th>Güncelle</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in Model)
+                            @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@item.CategoryName</td>
-                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-success">Düzenle</a></td>
+                                    <td>@item.ProductName</td>
+                                    <td>₺@item.ProductPrice</td>
+                                    <td><a href="/Admin/Product/DeleteProduct/@item.ProductID" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Product/UpdateProduct/@item.ProductID" class="btn btn-success">Düzenle</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <a href="/Admin/Category/CreateCategory" class="btn btn-success">Yeni Ekle</a>
+                    <a href="/Admin/Product/CreateProduct" class="btn btn-success">Yeni Ekle</a>
                 </div>
             </div>
         </div>
