@@ -10,52 +10,52 @@ namespace MultiShop.Catalog.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductService _ProductService;
+        private readonly IProductService _productService;
 
-        public ProductsController(IProductService ProductService)
+        public ProductsController(IProductService productService)
         {
-            _ProductService = ProductService;
+            _productService = productService;
         }
 
         [HttpGet]
         public async Task<IActionResult> ProductList()
         {
-            var values = await _ProductService.GetAllProduct();
+            var values = await _productService.GetAllProduct();
             return Ok(values);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById(string id)
         {
-            var values = await _ProductService.GetByIdProduct(id);
+            var values = await _productService.GetByIdProduct(id);
             return Ok(values);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
-            await _ProductService.CreateProduct(createProductDto);
+            await _productService.CreateProduct(createProductDto);
             return Ok("Ekleme Başarılı");
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteProduct(string id)
         {
-            await _ProductService.DeleteProduct(id);
+            await _productService.DeleteProduct(id);
             return Ok("Silme Başarılı");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
-            await _ProductService.UpdateProduct(updateProductDto);
+            await _productService.UpdateProduct(updateProductDto);
             return Ok("Güncelleme Başarılı");
         }
 
         [HttpGet("ProductListWithCategory")]
         public async Task<IActionResult> ProductListWithCategory()
         {
-            var values = await _ProductService.GetProductWithCategory();
+            var values = await _productService.GetProductWithCategory();
             return Ok(values);
         }
     }

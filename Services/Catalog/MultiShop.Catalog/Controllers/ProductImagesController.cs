@@ -8,45 +8,45 @@ namespace MultiShop.Catalog.Controllers
     [ApiController]
     public class ProductImagesController : ControllerBase
     {
-        private readonly IProductImageService _ProductImageService;
+        private readonly IProductImageService _productImageService;
 
-        public ProductImagesController(IProductImageService ProductImageService)
+        public ProductImagesController(IProductImageService productImageService)
         {
-            _ProductImageService = ProductImageService;
+            _productImageService = productImageService;
         }
 
         [HttpGet]
         public async Task<IActionResult> ProductImageList()
         {
-            var values = await _ProductImageService.GetAllProductImage();
+            var values = await _productImageService.GetAllProductImage();
             return Ok(values);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductImageById(string id)
         {
-            var values = await _ProductImageService.GetByIdProductImage(id);
+            var values = await _productImageService.GetByIdProductImage(id);
             return Ok(values);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateProductImage(CreateProductImageDto createProductImageDto)
         {
-            await _ProductImageService.CreateProductImage(createProductImageDto);
+            await _productImageService.CreateProductImage(createProductImageDto);
             return Ok("Ekleme Başarılı");
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteProductImage(string id)
         {
-            await _ProductImageService.DeleteProductImage(id);
+            await _productImageService.DeleteProductImage(id);
             return Ok("Silme Başarılı");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateProductImage(UpdateProductImageDto updateProductImageDto)
         {
-            await _ProductImageService.UpdateProductImage(updateProductImageDto);
+            await _productImageService.UpdateProductImage(updateProductImageDto);
             return Ok("Güncelleme Başarılı");
         }
     }

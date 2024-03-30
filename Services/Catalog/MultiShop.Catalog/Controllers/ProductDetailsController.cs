@@ -8,45 +8,45 @@ namespace MultiShop.Catalog.Controllers
     [ApiController]
     public class ProductDetailsController : ControllerBase
     {
-        private readonly IProductDetailService _ProductDetailService;
+        private readonly IProductDetailService _productDetailService;
 
-        public ProductDetailsController(IProductDetailService ProductDetailService)
+        public ProductDetailsController(IProductDetailService productDetailService)
         {
-            _ProductDetailService = ProductDetailService;
+            _productDetailService = productDetailService;
         }
 
         [HttpGet]
         public async Task<IActionResult> ProductDetailList()
         {
-            var values = await _ProductDetailService.GetAllProductDetail();
+            var values = await _productDetailService.GetAllProductDetail();
             return Ok(values);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductDetailById(string id)
         {
-            var values = await _ProductDetailService.GetByIdProductDetail(id);
+            var values = await _productDetailService.GetByIdProductDetail(id);
             return Ok(values);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateProductDetail(CreateProductDetailDto createProductDetailDto)
         {
-            await _ProductDetailService.CreateProductDetail(createProductDetailDto);
+            await _productDetailService.CreateProductDetail(createProductDetailDto);
             return Ok("Ekleme Başarılı");
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteProductDetail(string id)
         {
-            await _ProductDetailService.DeleteProductDetail(id);
+            await _productDetailService.DeleteProductDetail(id);
             return Ok("Silme Başarılı");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateProductDetail(UpdateProductDetailDto updateProductDetailDto)
         {
-            await _ProductDetailService.UpdateProductDetail(updateProductDetailDto);
+            await _productDetailService.UpdateProductDetail(updateProductDetailDto);
             return Ok("Güncelleme Başarılı");
         }
     }
