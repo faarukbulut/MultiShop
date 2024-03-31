@@ -9,7 +9,7 @@ namespace MultiShop.WebUI.Controllers
             return View();
         }
 
-        public IActionResult Detail()
+        public IActionResult Detail(string id)
         {
             return View();
         }
