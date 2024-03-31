@@ -180,7 +180,7 @@
                         <p>@Model.ProductInfo</p>
                     </div>
                     
-                    @await Component.InvokeAsync("_ProductDetailPageProductReviewComponentPartial")
+                    @await Component.InvokeAsync("_ProductDetailPageProductReviewComponentPartial", new {id=ViewBag.ProductID})
                 </div>
             </div>
         </div>
