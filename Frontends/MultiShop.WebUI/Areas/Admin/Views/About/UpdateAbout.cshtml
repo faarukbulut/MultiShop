@@ -1,0 +1,37 @@
+﻿@model UpdateAboutDto
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Hakkımızda Düzenle</h4>
+                <br />
+                <form method="post" asp-action="UpdateAbout" asp-controller="About">
+                    @Html.HiddenFor(x => x.AboutID)
+
+                    <label>Açıklama</label>
+                    <input type="text" class="form-control" asp-for="Description" />
+                    <br />
+
+                    <label>Adres</label>
+                    <input type="text" class="form-control" asp-for="Address" />
+                    <br />
+
+                    <label>Email</label>
+                    <input type="text" class="form-control" asp-for="Email" />
+                    <br />
+
+                    <label>Telefon</label>
+                    <input type="text" class="form-control" asp-for="Phone" />
+                    <br />
+
+                    <button type="submit" class="btn btn-primary">Düzenle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
