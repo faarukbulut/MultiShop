@@ -22,7 +22,7 @@ namespace MultiShop.WebUI.ViewComponents._HomePage
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultSpecialOfferDto>>(jsonData);
-                return View(values);
+                return View(values.Take(2).ToList());
             }
 
             return View();
