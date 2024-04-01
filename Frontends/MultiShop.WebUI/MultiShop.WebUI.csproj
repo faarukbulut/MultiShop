@@ -22,4 +22,9 @@
     <ProjectReference Include="..\MultiShop.DtoLayer\MultiShop.DtoLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\auth-assets\fonts\line-awesome\fonts\line-awesome.svg" />
+    <None Include="wwwroot\auth-assets\fonts\line-awesome\fonts\line-awesome.woff2" />
+  </ItemGroup>
+
 </Project>
