@@ -28,6 +28,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 });
 
+builder.Services.AddAccessTokenManagement();
 
 builder.Services.AddHttpContextAccessor();
 
