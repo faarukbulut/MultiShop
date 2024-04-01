@@ -62,10 +62,10 @@ namespace MultiShop.WebUI.Controllers
 
 			if (responseMessage.IsSuccessStatusCode)
 			{
-				var jsonResponse = await responseMessage.Content.ReadAsStringAsync();
-				var tokenModel = JsonConvert.DeserializeObject<JwtResponseModel>(jsonResponse);
+				var responseData = await responseMessage.Content.ReadAsStringAsync();
+				var tokenModel = JsonConvert.DeserializeObject<JwtResponseModel>(responseData);
 
-				if(tokenModel != null)
+				if (tokenModel != null)
 				{
 					JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 					var token = handler.ReadJwtToken(tokenModel.Token);
@@ -86,9 +86,11 @@ namespace MultiShop.WebUI.Controllers
 					}
 
 				}
+
+				return RedirectToAction("Login");
 			}
 
-			return View();
+			return RedirectToAction("Login");
 		}
 
 	}
