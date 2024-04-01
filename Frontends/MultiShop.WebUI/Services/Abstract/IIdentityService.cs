@@ -1,4 +1,4 @@
-﻿using MultiShop.DtoLayer.IdentityDtos.RegisterDtos;
+﻿using MultiShop.DtoLayer.IdentityDtos.LoginDtos;
 
 namespace MultiShop.WebUI.Services.Abstract
 {

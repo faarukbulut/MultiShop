@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MultiShop.DtoLayer.IdentityDtos.LoginDtos;
 using MultiShop.DtoLayer.IdentityDtos.RegisterDtos;
 using MultiShop.WebUI.Services.Abstract;
 using Newtonsoft.Json;
@@ -53,7 +54,7 @@ namespace MultiShop.WebUI.Controllers
 		public async Task<IActionResult> Login(SignInDto signInDto)
 		{
 			await _identityService.SignIn(signInDto);
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "User");
 		}
 
 	}
