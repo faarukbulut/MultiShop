@@ -30,23 +30,25 @@ namespace MultiShop.WebUI.Services.Concrete
             {
                 return currentToken.AccessToken;
             }
-
-            var discoveryEndpoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+            else
             {
-                Address = _serviceApiSettings.IdentityServerUrl,
-            });
+                var discoveryEndpoint = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+                {
+                    Address = _serviceApiSettings.IdentityServerUrl,
+                });
 
-            var clientCredentialsTokenRequest = new ClientCredentialsTokenRequest
-            {
-                ClientId = _clientSettings.MultiShopVisitorClient.ClientId,
-                ClientSecret = _clientSettings.MultiShopVisitorClient.ClientSecret,
-                Address = discoveryEndpoint.TokenEndpoint
-            };
+                var clientCredentialsTokenRequest = new ClientCredentialsTokenRequest
+                {
+                    ClientId = _clientSettings.MultiShopVisitorClient.ClientId,
+                    ClientSecret = _clientSettings.MultiShopVisitorClient.ClientSecret,
+                    Address = discoveryEndpoint.TokenEndpoint
+                };
 
-            var newToken = await _httpClient.RequestClientCredentialsTokenAsync(clientCredentialsTokenRequest);
-            await _clientAccessTokenCache.SetAsync("multishoptoken", newToken.AccessToken, newToken.ExpiresIn);
+                var newToken = await _httpClient.RequestClientCredentialsTokenAsync(clientCredentialsTokenRequest);
+                await _clientAccessTokenCache.SetAsync("multishoptoken", newToken.AccessToken, newToken.ExpiresIn);
 
-            return newToken.AccessToken;
+                return newToken.AccessToken;
+            }
         }
     }
 }
