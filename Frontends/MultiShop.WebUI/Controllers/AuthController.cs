@@ -38,7 +38,7 @@ namespace MultiShop.WebUI.Controllers
 
 				if (responseMessage.IsSuccessStatusCode)
 				{
-					return RedirectToAction("Index");
+					return RedirectToAction("Login");
 				}
 			}
 

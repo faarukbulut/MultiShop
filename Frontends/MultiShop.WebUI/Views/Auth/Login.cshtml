@@ -1,15 +1,46 @@
-﻿
+﻿@model CreateRegisterDto
 @{
-    Layout = null;
+	Layout = null;
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+	<meta charset="utf-8">
+	<title>MultiShop - Kayıt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="~/auth-assets/css/opensans-font.css">
+	<link rel="stylesheet" type="text/css" href="~/auth-assets/fonts/line-awesome/css/line-awesome.min.css">
+	<link rel="stylesheet" href="~/auth-assets/css/style.css" />
 </head>
-<body>
+<body class="form-v4">
+	<div class="page-content">
+		<div class="form-v4-content">
+			<div class="form-left">
+				<h2>MultiShop E-Ticaret</h2>
+				<p class="text-1">MultiShop üzerinden eticaret işlemlerini gerçekleştirebilmek, indirimli ürünler ve fırsatlardan haberdar olmak için sisteme giriş yapabilirsiniz.</p>
+				<div class="form-left-last">
+					<a href="/Auth/Login"><input type="submit" class="account" value="Kayıt Ol"></a>
+				</div>
+			</div>
+			<form class="form-detail" method="post">
+				@Html.AntiForgeryToken()
+
+				<h2>GİRİŞ YAP</h2>
+				<div class="form-row">
+					<label>Kullanıcı Adı</label>
+					<input asp-for="Username" type="text" class="input-text" required>
+				</div>
+				<div class="form-row">
+					<label>Şifre</label>
+					<input asp-for="Password" type="text" class="input-text" required>
+				</div>
+				<div class="form-row-last">
+					<input type="submit" class="register" value="Giriş Yap">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
+
