@@ -61,8 +61,15 @@
             </form>
         </div>
         <div class="col-lg-4 col-6 text-right">
-            <p class="m-0">Müşteri Temsilcisi</p>
-            <h5 class="m-0">+90 555 555 5555</h5>
+            <h5 class="m-0">Hoşgeldiniz</h5>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p class="m-0"><a href="/User" style="color:#000">@User.Identity.Name</a></p>
+            }
+            else
+            {
+                <p class="m-0"><a href="/Auth/Login" style="color:#000">Giriş Yap</a> - <a href="/Auth/Register" style="color:#000">Kayıt Ol</a></p>
+            }
         </div>
     </div>
 </div>
