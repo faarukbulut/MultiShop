@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CatalogDtos.ProductDtos;
 using MultiShop.DtoLayer.CommentDtos.UserCommentDtos;
-using Newtonsoft.Json;
-using System.Text;
+using MultiShop.WebUI.Services.CatalogServices.ProductServices;
+using MultiShop.WebUI.Services.CommentServices;
 
 namespace MultiShop.WebUI.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IProductService _productService;
+        private readonly ICommentService _commentService;
 
-        public ProductController(IHttpClientFactory httpClientFactory)
+        public ProductController(IProductService productService, ICommentService commentService)
         {
-            _httpClientFactory = httpClientFactory;
+            _productService = productService;
+            _commentService = commentService;
         }
 
         public IActionResult Index(string id)
@@ -24,18 +26,23 @@ namespace MultiShop.WebUI.Controllers
         public async Task<IActionResult> Detail(string id)
         {
             ViewBag.ProductID = id;
+            var values = await _productService.GetByIdProduct(id);
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7070/api/Products/" + id);
-
-            if (responseMessage.IsSuccessStatusCode)
+            var resultProductDto = new ResultProductDto()
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<ResultProductDto>(jsonData);
-                return View(values);
-            }
+                CategoryID = values.CategoryID,
+                ProductID = values.ProductID,
+                ProductDescription = values.ProductDescription,
+                ProductDetail = values.ProductDetail,
+                ProductImage1 = values.ProductImage1,
+                ProductImage2 = values.ProductImage2,
+                ProductImage3 = values.ProductImage3,
+                ProductInfo = values.ProductInfo,
+                ProductName = values.ProductName,
+                ProductPrice = values.ProductPrice
+            };
 
-            return View();
+            return View(resultProductDto);
         }
 
         [HttpPost]
@@ -45,17 +52,8 @@ namespace MultiShop.WebUI.Controllers
             createUserCommentDto.CreatedDate = DateTime.Now;
             createUserCommentDto.Status = false;
 
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createUserCommentDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7075/api/Comments", stringContent);
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Detail", new { id = id });
-            }
-
-            return View();
+            await _commentService.CreateComment(createUserCommentDto);
+            return RedirectToAction("Detail", new { id = id });
         }
 
 

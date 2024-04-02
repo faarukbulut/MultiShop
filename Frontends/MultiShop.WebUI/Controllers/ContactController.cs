@@ -1,27 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DtoLayer.CatalogDtos.AboutDtos;
 using MultiShop.DtoLayer.CatalogDtos.ContactDtos;
-using Newtonsoft.Json;
-using System.Text;
+using MultiShop.WebUI.Services.CatalogServices.AboutServices;
+using MultiShop.WebUI.Services.CatalogServices.ContactServices;
 
 namespace MultiShop.WebUI.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IAboutService _aboutService;
+        private readonly IContactService _contactService;
 
-        public ContactController(IHttpClientFactory httpClientFactory)
+        public ContactController(IAboutService aboutService, IContactService contactService)
         {
-            _httpClientFactory = httpClientFactory;
+            _aboutService = aboutService;
+            _contactService = contactService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7070/api/Abouts");
-            var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
+            var values = await _aboutService.GetAllAbout();
 
             ViewBag.Adres = values.Select(x => x.Address).FirstOrDefault();
             ViewBag.Mail = values.Select(x => x.Email).FirstOrDefault();
@@ -37,17 +35,8 @@ namespace MultiShop.WebUI.Controllers
             createContactDto.isRead = false;
             createContactDto.SendDate = DateTime.Now;
 
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createContactDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7070/api/Contacts", stringContent);
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View();
+            await _contactService.CreateContact(createContactDto);
+            return RedirectToAction("Index");
         }
 
     }
