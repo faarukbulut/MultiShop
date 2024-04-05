@@ -8,11 +8,11 @@ namespace MultiShop.Discount.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class CouponsController : ControllerBase
+    public class DiscountsController : ControllerBase
     {
         private readonly ICouponService _couponService;
 
-        public CouponsController(ICouponService couponService)
+        public DiscountsController(ICouponService couponService)
         {
             _couponService = couponService;
         }
@@ -28,6 +28,13 @@ namespace MultiShop.Discount.Controllers
         public async Task<IActionResult> GetCouponById(int id)
         {
             var values = await _couponService.GetByIdCoupon(id);
+            return Ok(values);
+        }
+
+        [HttpGet("GetCodeDetailByCode")]
+        public async Task<IActionResult> GetCodeDetailByCode(string code)
+        {
+            var values = await _couponService.GetCodeDetailByCode(code);
             return Ok(values);
         }
 
