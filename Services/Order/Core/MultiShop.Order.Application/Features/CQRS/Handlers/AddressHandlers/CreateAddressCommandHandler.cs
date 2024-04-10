@@ -17,10 +17,17 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
         {
             await _repository.Create(new Address
             {
-                City = createAddressCommand.City,
-                Detail = createAddressCommand.Detail,
-                District = createAddressCommand.District,
                 UserID = createAddressCommand.UserID,
+                Name = createAddressCommand.Name,
+                Surname = createAddressCommand.Surname,
+                Email = createAddressCommand.Email,
+                Phone = createAddressCommand.Phone,
+                Detail1 = createAddressCommand.Detail1,
+                Detail2 = createAddressCommand.Detail2,
+                Country = createAddressCommand.Country,
+                City = createAddressCommand.City,
+                District = createAddressCommand.District,
+                ZipCode = createAddressCommand.ZipCode,
             });
         }
 

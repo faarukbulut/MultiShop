@@ -17,7 +17,7 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
         {
             var values = await _repository.GetById(command.AddressID);
             
-            values.Detail = command.Detail;
+            values.Detail1 = command.Detail;
             values.District = command.District;
             values.City = command.City;
             values.UserID = command.UserID;
