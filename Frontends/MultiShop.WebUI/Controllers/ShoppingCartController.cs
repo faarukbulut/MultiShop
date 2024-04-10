@@ -16,8 +16,10 @@ namespace MultiShop.WebUI.Controllers
             _basketService = basketService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string code)
         {
+            ViewBag.Code = code;
+
             var values = await _basketService.GetBasket();
             ViewBag.TotalPrice = values.TotalPrice;
             ViewBag.TaxPrice = values.TotalPrice / 100 * 20;
