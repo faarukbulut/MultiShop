@@ -31,7 +31,7 @@ namespace MultiShop.WebUI.Controllers
 
             ViewBag.TotalNewPriceWithDiscount = totalNewPriceWithDiscount;
 
-            return RedirectToAction("Index", "ShoppingCart", new { code = code });
+            return RedirectToAction("Index", "ShoppingCart", new { code = code, discountRate = values });
         }
     }
 }
