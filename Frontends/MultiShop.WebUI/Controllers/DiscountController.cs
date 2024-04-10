@@ -24,20 +24,14 @@ namespace MultiShop.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmDiscountCoupon(string code)
         {
-            var values = _discountService.GetDiscountCode(code);
-
+            var values = await _discountService.GetCouponRate(code);
             var basketValues = await _basketService.GetBasket();
-            
-            
             var totalPriceWithTax = basketValues.TotalPrice + basketValues.TotalPrice / 100 * 20;
-            var totalNewPriceWithDiscount = totalPriceWithTax - (totalPriceWithTax / 100 * 20);
+            var totalNewPriceWithDiscount = totalPriceWithTax - (totalPriceWithTax / 100 * values);
 
             ViewBag.TotalNewPriceWithDiscount = totalNewPriceWithDiscount;
 
-
-
-
-            return View(values);
+            return View();
         }
     }
 }
