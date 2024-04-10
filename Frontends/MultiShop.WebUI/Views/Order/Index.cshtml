@@ -1,4 +1,4 @@
-﻿
+﻿@model CreateAddressDto
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
@@ -6,13 +6,97 @@
 
 <div class="container-fluid">
     <div class="row px-xl-5">
-        @await Component.InvokeAsync("_OrderPageDetailComponentPartial")
-        <div class="col-lg-4">
-            <h5 class="section-title position-relative text-uppercase mb-3">
-                <span class="bg-secondary pr-3">Sipariş Özeti</span>
-            </h5>
-            @await Component.InvokeAsync("_OrderPageSummaryComponentPartial")
-            @await Component.InvokeAsync("_OrderPagePaymentMethodComponentPartial")
-        </div>
+
+        <form method="post">
+            <div class="col-lg-8">
+                <h5 class="section-title position-relative text-uppercase mb-3">
+                    <span class="bg-secondary pr-3">Teslimat & Fatura Adresi</span>
+                </h5>
+
+                <div class="bg-light p-30 mb-5">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>Ad</label>
+                            <input class="form-control" type="text" asp-for="Name" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Soyad</label>
+                            <input class="form-control" type="text" asp-for="Surname" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>E-mail</label>
+                            <input class="form-control" type="text" asp-for="Email" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Telefon</label>
+                            <input class="form-control" type="text" asp-for="Phone" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Adres Satır 1</label>
+                            <input class="form-control" type="text" asp-for="Detail1" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Adres Satır 2</label>
+                            <input class="form-control" type="text" asp-for="Detail2" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Ülke</label>
+                            <input class="form-control" type="text" asp-for="Country" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>İl</label>
+                            <input class="form-control" type="text" asp-for="City" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>İlçe</label>
+                            <input class="form-control" type="text" asp-for="District" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Posta Kodu</label>
+                            <input class="form-control" type="text" asp-for="ZipCode" required>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <h5 class="section-title position-relative text-uppercase mb-3">
+                    <span class="bg-secondary pr-3">Sipariş Özeti</span>
+                </h5>
+                <div class="bg-light p-3 mb-5">
+                    <div class="d-flex justify-content-between">
+                        <h6>Sipariş Tutarı</h6>
+                        <h6>$150</h6>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Ödeme Yöntemi</span></h5>
+                    <div class="bg-light p-30">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-block btn-primary font-weight-bold py-3">Ödeme Adımına Geç</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
     </div>
 </div>
