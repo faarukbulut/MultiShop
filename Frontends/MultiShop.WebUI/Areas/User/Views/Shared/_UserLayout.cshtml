@@ -1,16 +1,24 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("_UserLayoutHeadComponentPartial")
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>_UserLayout</title>
-</head>
-<body>
-    @RenderBody()
+<body class="sidebar-mini">
+    <div class="wrapper">
+        @await Component.InvokeAsync("_UserLayoutNavbarComponentPartial")
+        @await Component.InvokeAsync("_UserLayoutSidebarComponentPartial")
+
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        @await Component.InvokeAsync("_UserLayoutFooterComponentPartial")
+    </div>
+
+    @await Component.InvokeAsync("_UserLayoutScriptComponentPartial")
 </body>
 </html>
+
