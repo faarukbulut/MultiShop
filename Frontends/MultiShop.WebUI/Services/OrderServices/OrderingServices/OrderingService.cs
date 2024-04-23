@@ -1,4 +1,5 @@
 ﻿using MultiShop.DtoLayer.OrderDtos.OrderingDtos;
+using Newtonsoft.Json;
 
 namespace MultiShop.WebUI.Services.OrderServices.OrderingServices
 {
@@ -13,8 +14,9 @@ namespace MultiShop.WebUI.Services.OrderServices.OrderingServices
 
         public async Task<List<ResultOrderingByUserIdDto>> GetOrderingByUserId(string id)
         {
-            var responseMessage = await _httpClient.GetAsync("orderings/getorderingbyuserid?id=" + id);
-            var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultOrderingByUserIdDto>>();
+            var responseMessage = await _httpClient.GetAsync($"orderings/GetOrderingByUserId/{id}");
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultOrderingByUserIdDto>>(jsonData);
             return values;
         }
 
