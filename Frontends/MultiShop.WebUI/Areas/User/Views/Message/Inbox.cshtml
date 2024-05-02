@@ -1,0 +1,45 @@
+﻿@model List<ResultInboxMessageDto>
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Gelen Mesajlar</h4>
+                <br />
+                <div class="bs-example" data-example-id="bordered-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Gönderen</th>
+                                <th>Konu</th>
+                                <th>Tarih</th>
+                                <th>Durum</th>
+                                <th>Sil</th>
+                                <th>Mesajı Görüntüle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.SenderID</td>
+                                    <td>@item.Subject</td>
+                                    <td>@item.MessageDate.ToShortDateString()</td>
+                                    <td>@item.isRead</td>
+                                    <td><a href="#" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="#" class="btn btn-success">Görüntüle</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
