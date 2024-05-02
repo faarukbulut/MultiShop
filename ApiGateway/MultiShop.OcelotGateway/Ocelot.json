@@ -131,7 +131,27 @@
         "AuthenticationProviderKey": "OcelotAuthenticationScheme",
         "AllowedScopes": [ "PaymentFullPermission" ]
       }
+    },
+
+    // Message Microservis
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7077
+        }
+      ],
+      "UpstreamPathTemplate": "/services/message/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "https",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "MessageFullPermission" ]
+      }
     }
+
 
   ],
   "GlobalConfiguration": {
