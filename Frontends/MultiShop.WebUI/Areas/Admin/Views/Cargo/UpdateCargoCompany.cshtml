@@ -1,0 +1,25 @@
+﻿@model UpdateCargoCompanyDto
+@{
+    ViewData["Title"] = "UpdateCargoCompany";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Kargo Şirketi Düzenle</h4>
+                <br />
+                <form method="post" asp-action="CreateCargoCompany" asp-controller="Cargo">
+                    @Html.HiddenFor(x => x.CargoCompanyID)
+
+                    <label>Şirket Adı</label>
+                    <input type="text" class="form-control" asp-for="CargoCompanyName" />
+                    <br />
+
+                    <button type="submit" class="btn btn-primary">Düzenle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

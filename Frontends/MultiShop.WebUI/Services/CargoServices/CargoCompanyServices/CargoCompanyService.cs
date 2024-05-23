@@ -16,7 +16,7 @@ namespace MultiShop.WebUI.Services.CargoServices.CargoCompanyServices
             await _httpClient.PostAsJsonAsync<CreateCargoCompanyDto>("cargocompanies", createCargoCompanyDto);
         }
 
-        public async Task DeleteCargoCompany(string id)
+        public async Task DeleteCargoCompany(int id)
         {
             await _httpClient.DeleteAsync("cargocompanies?id=" + id);
         }
@@ -28,7 +28,7 @@ namespace MultiShop.WebUI.Services.CargoServices.CargoCompanyServices
             return values;
         }
 
-        public async Task<UpdateCargoCompanyDto> GetByIdCargoCompany(string id)
+        public async Task<UpdateCargoCompanyDto> GetByIdCargoCompany(int id)
         {
             var responseMessage = await _httpClient.GetAsync("cargocompanies/" + id);
             var values = await responseMessage.Content.ReadFromJsonAsync<UpdateCargoCompanyDto>();

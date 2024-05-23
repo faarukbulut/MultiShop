@@ -7,7 +7,7 @@ namespace MultiShop.WebUI.Services.CargoServices.CargoCompanyServices
         Task<List<ResultCargoCompanyDto>> GetAllCargoCompany();
         Task CreateCargoCompany(CreateCargoCompanyDto createCargoCompanyDto);
         Task UpdateCargoCompany(UpdateCargoCompanyDto updateCargoCompanyDto);
-        Task DeleteCargoCompany(string id);
-        Task<UpdateCargoCompanyDto> GetByIdCargoCompany(string id);
+        Task DeleteCargoCompany(int id);
+        Task<UpdateCargoCompanyDto> GetByIdCargoCompany(int id);
     }
 }
