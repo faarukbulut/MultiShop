@@ -1,0 +1,26 @@
+﻿@model GetCargoCustomerByIdDto
+@{
+    ViewData["Title"] = "UserAddressInfo";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Kategoriler</h4>
+                <br />
+                <div class="bs-example">
+                    <h3>Kullanıcı Profil Bilgisi</h3>
+                    <div class="alert alert-info">Kullanıcı Id: @Model.cargoCustomerID</div>
+                    <div class="alert alert-info">Kullanıcı Ad Soyad: @Model.name @Model.surname</div>
+                    <div class="alert alert-info">Kullanıcı Email: @Model.email</div>
+                    <div class="alert alert-info">Kullanıcı Telefon: @Model.phone</div>
+                    <div class="alert alert-info">Kullanıcı İl - İlçe: @Model.district - @Model.city</div>
+                    <div class="alert alert-info">Kullanıcı Adres: @Model.address</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
